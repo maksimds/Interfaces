@@ -1,17 +1,55 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.awt.*;
+import java.util.ArrayList;
+
+
 public class Main {
-    public static void main(String[] args) {
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    public static void main(String[] args)
+    {
+        ShortWordFilter filter = new ShortWordFilter();
+        BigRectangleFilter lister = new BigRectangleFilter();
 
-        // Press Ctrl+R or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        ArrayList<String> line = new ArrayList<>();
+        line.add(new String("Word"));
+        line.add(new String("Fox"));
+        line.add(new String("Man"));
+        line.add(new String("Germ"));
+        line.add(new String("Bike"));
+        line.add(new String("Jam"));
+        line.add(new String("Tan"));
+        line.add(new String("Cat"));
+        line.add(new String("Tape"));
 
-            // Press Ctrl+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
-            System.out.println("i = " + i);
+        ArrayList <Rectangle> rect = new ArrayList<>();
+        rect.add(new Rectangle(5,3));
+        rect.add(new Rectangle(5,4));
+        rect.add(new Rectangle(6,2));
+        rect.add(new Rectangle(8,1));
+        rect.add(new Rectangle(4,4));
+
+
+        String[] fields;
+        for(String l: line)
+        {
+            fields = l.split(" ");
+            for(String w: fields)
+            {
+                if(filter.accept(w))
+                {
+                    System.out.println(w.trim());
+                }
+            }
         }
+
+        System.out.println();
+        for(Rectangle r: rect)
+        {
+            if(lister.accept(r)){
+                System.out.println(r);
+            }
+        }
+
+
     }
+
+
 }
